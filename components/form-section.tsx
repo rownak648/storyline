@@ -15,7 +15,6 @@ import { useToast } from "@/hooks/use-toast"
 
 interface FormData {
   title: string
-  videoUrl: string,
   description: string
   embedCode: string
   mediaUrl: string
@@ -23,7 +22,8 @@ interface FormData {
   thumbnailUrl: string
   redirectLink: string
   popunderAd: string
-}
+
+  videoUrl: string}
 
 const ADMIN_PASSWORD = "Nayan563" // Change this to your desired password
 
@@ -32,7 +32,6 @@ export default function FormSection() {
   const [passwordInput, setPasswordInput] = useState("")
   const [formData, setFormData] = useState<FormData>({
     title: "",
-    videoUrl: "",
     description: "",
     embedCode: "",
     mediaUrl: "",
@@ -410,7 +409,8 @@ CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);`
       thumbnailUrl: "",
       redirectLink: "",
       popunderAd: "",
-    })
+    
+    videoUrl: "",})
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
     }
@@ -595,19 +595,7 @@ CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);`
                 />
               </div>
               <div>
-                
-<Label htmlFor="videoUrl" className="text-sm font-medium">
-  ভিডিও URL (যেমনঃ https://example.com/video.mp4)
-</Label>
-<Input
-  id="videoUrl"
-  placeholder="https://example.com/video.mp4"
-  value={formData.videoUrl}
-  onChange={(e) =>
-    setFormData({ ...formData, videoUrl: e.target.value })
-  }
-/>
-<Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">Description</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
